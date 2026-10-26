@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "name": "Independent seed robustness check for L=8, g=0.5, p=0",
+  "prespecified_at_utc": "2026-10-10T20:49:31.957705+00:00",
+  "purpose": "Additional validation within one unpublished GHZ-reuse analysis project. All planned runs are retained; no seed selection based on agreement.",
+  "config": {
+    "length": 8,
+    "strength": 0.5,
+    "noise": 0.0,
+    "reset_mode": "coherent",
+    "max_reset_attempts": 1,
+    "attempts": 100000,
+    "test_fraction": 0.0,
+    "link_success": 1.0,
+    "delta": 0.2
+  },
+  "seeds": [
+    2026101001,
+    2026101002,
+    2026101003,
+    2026101004,
+    2026101005,
+    2026101006,
+    2026101007,
+    2026101008,
+    2026101009,
+    2026101010,
+    2026101011,
+    2026101012,
+    2026101013,
+    2026101014,
+    2026101015,
+    2026101016,
+    2026101017,
+    2026101018,
+    2026101019,
+    2026101020
+  ],
+  "core_sha256": "d9ac101344a6a9fc4753ea7af95c8c0b050f3d9619e3191cc2fa69f5c41da37e",
+  "original_grid": "results/manuscript/results.json",
+  "original_grid_sha256": "5e97f75fbd051b8ee9422f093d8e0dc0fd05aab25ac0e720f9297fa81cb43552",
+  "analysis": [
+    "Pool only the 20 new runs; calculate exact acceptance, pooled estimate, Wilson 95% interval, and standardized count deviation.",
+    "Compare unbiased between-run count variance with N*p*(1-p), using theoretical p.",
+    "Report every individual interval and its coverage descriptively; coverage is not a pass/fail criterion.",
+    "Check per-stage reach, rejection, readout, BSM, reset, resource, and accepted-error counter identities.",
+    "Preserve original records and table inputs; record source/environment/plan provenance."
+  ],
+  "stopping_rule": "Run all 20 seeds once at 100000 attempts each. Technical failures stop the run and remain recorded; do not extend or repeat runs to improve statistical agreement.",
+  "interpretation": "A reproducibility diagnostic, not proof of security or an exhaustive test of implementation correctness."
+}

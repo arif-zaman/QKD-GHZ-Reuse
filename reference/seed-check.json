@@ -1,0 +1,3848 @@
+{
+  "schema_version": 1,
+  "plan": {
+    "schema_version": 1,
+    "name": "Independent seed robustness check for L=8, g=0.5, p=0",
+    "prespecified_at_utc": "2026-10-10T20:49:31.957705+00:00",
+    "purpose": "Additional validation within one unpublished GHZ-reuse analysis project. All planned runs are retained; no seed selection based on agreement.",
+    "config": {
+      "length": 8,
+      "strength": 0.5,
+      "noise": 0.0,
+      "reset_mode": "coherent",
+      "max_reset_attempts": 1,
+      "attempts": 100000,
+      "test_fraction": 0.0,
+      "link_success": 1.0,
+      "delta": 0.2
+    },
+    "seeds": [
+      2026101001,
+      2026101002,
+      2026101003,
+      2026101004,
+      2026101005,
+      2026101006,
+      2026101007,
+      2026101008,
+      2026101009,
+      2026101010,
+      2026101011,
+      2026101012,
+      2026101013,
+      2026101014,
+      2026101015,
+      2026101016,
+      2026101017,
+      2026101018,
+      2026101019,
+      2026101020
+    ],
+    "core_sha256": "d9ac101344a6a9fc4753ea7af95c8c0b050f3d9619e3191cc2fa69f5c41da37e",
+    "original_grid": "results/manuscript/results.json",
+    "original_grid_sha256": "5e97f75fbd051b8ee9422f093d8e0dc0fd05aab25ac0e720f9297fa81cb43552",
+    "analysis": [
+      "Pool only the 20 new runs; calculate exact acceptance, pooled estimate, Wilson 95% interval, and standardized count deviation.",
+      "Compare unbiased between-run count variance with N*p*(1-p), using theoretical p.",
+      "Report every individual interval and its coverage descriptively; coverage is not a pass/fail criterion.",
+      "Check per-stage reach, rejection, readout, BSM, reset, resource, and accepted-error counter identities.",
+      "Preserve original records and table inputs; record source/environment/plan provenance."
+    ],
+    "stopping_rule": "Run all 20 seeds once at 100000 attempts each. Technical failures stop the run and remain recorded; do not extend or repeat runs to improve statistical agreement.",
+    "interpretation": "A reproducibility diagnostic, not proof of security or an exhaustive test of implementation correctness."
+  },
+  "provenance": {
+    "core_sha256": "d9ac101344a6a9fc4753ea7af95c8c0b050f3d9619e3191cc2fa69f5c41da37e",
+    "plan_sha256": "400e3ae4ccbe546ecfd300ac507a84abf97f72d775b8e4d52040879a33e616d6",
+    "harness_sha256": "e44dc3a4c909b0bcdaddf93ece97a3330126ba790c4c8ff55cf082a513e9d96b",
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "rng_api": "numpy.random.default_rng(seed)",
+    "rng_bit_generator": "PCG64",
+    "started_utc": "2026-10-10T20:51:00Z"
+  },
+  "summary": {
+    "number_of_runs": 20,
+    "attempts_per_run": 100000,
+    "expected_acceptance": 0.0058706834227199986,
+    "total_attempts": 2000000,
+    "total_accepted": 11558,
+    "pooled_acceptance": 0.005779,
+    "pooled_wilson_ci95": [
+      0.0056748939020037446,
+      0.005885004623969523
+    ],
+    "pooled_standardized_residual": -1.697227439107079,
+    "observed_mean_count": 577.9,
+    "expected_mean_count": 587.0683422719999,
+    "unbiased_sample_variance_counts": 659.6736842105263,
+    "expected_binomial_variance_counts": 583.62184988702,
+    "variance_ratio": 1.1303101217650244,
+    "individual_ci95_coverage_count": 19,
+    "individual_ci95_coverage_fraction": 0.95,
+    "coverage_interpretation": "Descriptive only; no requirement that any or all intervals cover."
+  },
+  "runs": [
+    {
+      "seed": 2026101001,
+      "elapsed_seconds": 0.3854959169984795,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101001,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99411,
+        "accepted_blocks": 589,
+        "accepted_bits": 4712,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 192487,
+        "readouts": 192487,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 192487,
+        "reset_ancillas": 191898,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191898,
+        "successful_reset_stages": 92487,
+        "classical_protocol_bits": 576872,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00589,
+        "block_acceptance_ci95": [
+          0.0054343427008024855,
+          0.006383617905314328
+        ],
+        "raw_bits_per_transmission": 0.04712,
+        "accepted_raw_bit_errors": 2361,
+        "accepted_raw_error_rate": 0.5010611205432938,
+        "accepted_raw_error_standard_error_by_block": 0.007566364350757321,
+        "accepted_error_by_round": [
+          292,
+          296,
+          304,
+          309,
+          301,
+          294,
+          303,
+          262
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.45553604407731896,
+            0.5360299978625511
+          ],
+          [
+            0.46228228838829416,
+            0.5427780864477838
+          ],
+          [
+            0.4757969131842455,
+            0.5562521274442483
+          ],
+          [
+            0.48425855852379956,
+            0.5646583982249542
+          ],
+          [
+            0.47072546877066657,
+            0.5512028221856715
+          ],
+          [
+            0.4589082441036004,
+            0.5394049642843735
+          ],
+          [
+            0.4741059701237338,
+            0.5545694872807081
+          ],
+          [
+            0.40517509183849215,
+            0.4851834533798182
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48157,
+          23311,
+          11279,
+          5411,
+          2509,
+          1231,
+          589
+        ],
+        "errors_at_readout_by_round": [
+          45189,
+          21629,
+          10366,
+          5084,
+          2473,
+          1148,
+          557,
+          262
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922189,
+          0.8745141778559476,
+          0.8254519365063541,
+          0.7811576238105754,
+          0.7394812128904266,
+          0.7074950134120148,
+          0.6906578574395693,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.929760277981201e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48157,
+            "discarded": 51843
+          },
+          {
+            "stage": 2,
+            "entered": 48157,
+            "accepted": 23311,
+            "discarded": 24846
+          },
+          {
+            "stage": 3,
+            "entered": 23311,
+            "accepted": 11279,
+            "discarded": 12032
+          },
+          {
+            "stage": 4,
+            "entered": 11279,
+            "accepted": 5411,
+            "discarded": 5868
+          },
+          {
+            "stage": 5,
+            "entered": 5411,
+            "accepted": 2509,
+            "discarded": 2902
+          },
+          {
+            "stage": 6,
+            "entered": 2509,
+            "accepted": 1231,
+            "discarded": 1278
+          },
+          {
+            "stage": 7,
+            "entered": 1231,
+            "accepted": 589,
+            "discarded": 642
+          }
+        ],
+        "final_round_entered": 589,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99411,
+          "accepted_bits": 4712,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 192487,
+          "readouts": 192487,
+          "encoding_ancillas": 192487,
+          "reset_attempts": 191898,
+          "reset_ancillas": 191898,
+          "successful_reset_stages": 92487,
+          "classical_protocol_bits": 576872,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101002,
+      "elapsed_seconds": 0.29551716599962674,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101002,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99463,
+        "accepted_blocks": 537,
+        "accepted_bits": 4296,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191575,
+        "readouts": 191575,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191575,
+        "reset_ancillas": 191038,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191038,
+        "successful_reset_stages": 91575,
+        "classical_protocol_bits": 574188,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00537,
+        "block_acceptance_ci95": [
+          0.004935644225701533,
+          0.005842356330052366
+        ],
+        "raw_bits_per_transmission": 0.04296,
+        "accepted_raw_bit_errors": 2101,
+        "accepted_raw_error_rate": 0.48905959031657353,
+        "accepted_raw_error_standard_error_by_block": 0.007574511534238734,
+        "accepted_error_by_round": [
+          264,
+          284,
+          266,
+          276,
+          267,
+          271,
+          257,
+          216
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.44954661694914966,
+            0.5338126469289847
+          ],
+          [
+            0.4865899277100704,
+            0.5707281633763556
+          ],
+          [
+            0.4532404954060549,
+            0.5375146511929086
+          ],
+          [
+            0.47174471437727433,
+            0.5559898458258351
+          ],
+          [
+            0.45508830532864014,
+            0.5393647826307381
+          ],
+          [
+            0.4624853488070913,
+            0.5467595045939451
+          ],
+          [
+            0.4366363395310122,
+            0.5208373348242201
+          ],
+          [
+            0.3615976967948976,
+            0.44426038178333727
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48153,
+          22943,
+          10947,
+          5274,
+          2533,
+          1188,
+          537
+        ],
+        "errors_at_readout_by_round": [
+          45357,
+          21610,
+          10439,
+          4971,
+          2367,
+          1147,
+          520,
+          216
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.933012701892219,
+          0.8752647866451639,
+          0.8254220789684192,
+          0.7809918884171774,
+          0.7425399749983588,
+          0.7102984404688378,
+          0.6823769989154181,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -5.026843139275014e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48153,
+            "discarded": 51847
+          },
+          {
+            "stage": 2,
+            "entered": 48153,
+            "accepted": 22943,
+            "discarded": 25210
+          },
+          {
+            "stage": 3,
+            "entered": 22943,
+            "accepted": 10947,
+            "discarded": 11996
+          },
+          {
+            "stage": 4,
+            "entered": 10947,
+            "accepted": 5274,
+            "discarded": 5673
+          },
+          {
+            "stage": 5,
+            "entered": 5274,
+            "accepted": 2533,
+            "discarded": 2741
+          },
+          {
+            "stage": 6,
+            "entered": 2533,
+            "accepted": 1188,
+            "discarded": 1345
+          },
+          {
+            "stage": 7,
+            "entered": 1188,
+            "accepted": 537,
+            "discarded": 651
+          }
+        ],
+        "final_round_entered": 537,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99463,
+          "accepted_bits": 4296,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191575,
+          "readouts": 191575,
+          "encoding_ancillas": 191575,
+          "reset_attempts": 191038,
+          "reset_ancillas": 191038,
+          "successful_reset_stages": 91575,
+          "classical_protocol_bits": 574188,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101003,
+      "elapsed_seconds": 0.29316070800996386,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101003,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99413,
+        "accepted_blocks": 587,
+        "accepted_bits": 4696,
+        "fully_correct_accepted_blocks": 1,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 190888,
+        "readouts": 190888,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 190888,
+        "reset_ancillas": 190301,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 190301,
+        "successful_reset_stages": 90888,
+        "classical_protocol_bits": 572077,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00587,
+        "block_acceptance_ci95": [
+          0.0054151439103128285,
+          0.006362818232328488
+        ],
+        "raw_bits_per_transmission": 0.04696,
+        "accepted_raw_bit_errors": 2323,
+        "accepted_raw_error_rate": 0.4946763202725724,
+        "accepted_raw_error_standard_error_by_block": 0.00735814749003406,
+        "accepted_error_by_round": [
+          310,
+          299,
+          297,
+          274,
+          304,
+          287,
+          286,
+          266
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4876731375884711,
+            0.5681794088219776
+          ],
+          [
+            0.46899931048272353,
+            0.5496182049874261
+          ],
+          [
+            0.4656101223440975,
+            0.546237387500543
+          ],
+          [
+            0.42676824321041096,
+            0.5072242019408769
+          ],
+          [
+            0.47748042422301834,
+            0.5580621053109035
+          ],
+          [
+            0.4486920840648844,
+            0.5293053976522115
+          ],
+          [
+            0.4470028384378275,
+            0.527609640466514
+          ],
+          [
+            0.41331593597228194,
+            0.49359648667697037
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47634,
+          22802,
+          10935,
+          5185,
+          2534,
+          1211,
+          587
+        ],
+        "errors_at_readout_by_round": [
+          44675,
+          21228,
+          10277,
+          4793,
+          2321,
+          1170,
+          564,
+          266
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.933012701892219,
+          0.8749144811858607,
+          0.8246704291554006,
+          0.7809064609450336,
+          0.7413217279838618,
+          0.7100427835607609,
+          0.6837496190002109,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.2930659698830295e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47634,
+            "discarded": 52366
+          },
+          {
+            "stage": 2,
+            "entered": 47634,
+            "accepted": 22802,
+            "discarded": 24832
+          },
+          {
+            "stage": 3,
+            "entered": 22802,
+            "accepted": 10935,
+            "discarded": 11867
+          },
+          {
+            "stage": 4,
+            "entered": 10935,
+            "accepted": 5185,
+            "discarded": 5750
+          },
+          {
+            "stage": 5,
+            "entered": 5185,
+            "accepted": 2534,
+            "discarded": 2651
+          },
+          {
+            "stage": 6,
+            "entered": 2534,
+            "accepted": 1211,
+            "discarded": 1323
+          },
+          {
+            "stage": 7,
+            "entered": 1211,
+            "accepted": 587,
+            "discarded": 624
+          }
+        ],
+        "final_round_entered": 587,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99413,
+          "accepted_bits": 4696,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 190888,
+          "readouts": 190888,
+          "encoding_ancillas": 190888,
+          "reset_attempts": 190301,
+          "reset_ancillas": 190301,
+          "successful_reset_stages": 90888,
+          "classical_protocol_bits": 572077,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101004,
+      "elapsed_seconds": 0.2953295830084244,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101004,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99392,
+        "accepted_blocks": 608,
+        "accepted_bits": 4864,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 192173,
+        "readouts": 192173,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 192173,
+        "reset_ancillas": 191565,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191565,
+        "successful_reset_stages": 92173,
+        "classical_protocol_bits": 575911,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00608,
+        "block_acceptance_ci95": [
+          0.005616799068189082,
+          0.006581146940944949
+        ],
+        "raw_bits_per_transmission": 0.04864,
+        "accepted_raw_bit_errors": 2355,
+        "accepted_raw_error_rate": 0.48416940789473684,
+        "accepted_raw_error_standard_error_by_block": 0.007208254424269166,
+        "accepted_error_by_round": [
+          304,
+          285,
+          313,
+          297,
+          290,
+          295,
+          324,
+          247
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.460381443820708,
+            0.539618556179292
+          ],
+          [
+            0.42940461649630124,
+            0.5084877910021317
+          ],
+          [
+            0.4751083938004407,
+            0.5543109921213542
+          ],
+          [
+            0.4489510100504861,
+            0.5281672453436734
+          ],
+          [
+            0.4375414698648816,
+            0.5166950409234374
+          ],
+          [
+            0.44568900787864574,
+            0.5248916061995593
+          ],
+          [
+            0.49315494349851874,
+            0.5722214696610257
+          ],
+          [
+            0.36791825471709527,
+            0.44575896777820356
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47846,
+          23105,
+          11218,
+          5503,
+          2655,
+          1238,
+          608
+        ],
+        "errors_at_readout_by_round": [
+          44848,
+          21422,
+          10388,
+          4992,
+          2497,
+          1185,
+          571,
+          247
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.933012701892219,
+          0.8756459640770394,
+          0.8263228188444304,
+          0.7834440637700941,
+          0.7462032721177498,
+          0.7151444377214036,
+          0.6874709444106798,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.554980941215895e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47846,
+            "discarded": 52154
+          },
+          {
+            "stage": 2,
+            "entered": 47846,
+            "accepted": 23105,
+            "discarded": 24741
+          },
+          {
+            "stage": 3,
+            "entered": 23105,
+            "accepted": 11218,
+            "discarded": 11887
+          },
+          {
+            "stage": 4,
+            "entered": 11218,
+            "accepted": 5503,
+            "discarded": 5715
+          },
+          {
+            "stage": 5,
+            "entered": 5503,
+            "accepted": 2655,
+            "discarded": 2848
+          },
+          {
+            "stage": 6,
+            "entered": 2655,
+            "accepted": 1238,
+            "discarded": 1417
+          },
+          {
+            "stage": 7,
+            "entered": 1238,
+            "accepted": 608,
+            "discarded": 630
+          }
+        ],
+        "final_round_entered": 608,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99392,
+          "accepted_bits": 4864,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 192173,
+          "readouts": 192173,
+          "encoding_ancillas": 192173,
+          "reset_attempts": 191565,
+          "reset_ancillas": 191565,
+          "successful_reset_stages": 92173,
+          "classical_protocol_bits": 575911,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101005,
+      "elapsed_seconds": 0.2936608750023879,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101005,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99443,
+        "accepted_blocks": 557,
+        "accepted_bits": 4456,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191733,
+        "readouts": 191733,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191733,
+        "reset_ancillas": 191176,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191176,
+        "successful_reset_stages": 91733,
+        "classical_protocol_bits": 574642,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00557,
+        "block_acceptance_ci95": [
+          0.005127332554980801,
+          0.006050652635528066
+        ],
+        "raw_bits_per_transmission": 0.04456,
+        "accepted_raw_bit_errors": 2173,
+        "accepted_raw_error_rate": 0.487657091561939,
+        "accepted_raw_error_standard_error_by_block": 0.007290822685089611,
+        "accepted_error_by_round": [
+          291,
+          283,
+          257,
+          289,
+          258,
+          275,
+          267,
+          253
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.48094863504533186,
+            0.5636272421599102
+          ],
+          [
+            0.46664830334963225,
+            0.5493990124442549
+          ],
+          [
+            0.420406671949416,
+            0.5029228192575681
+          ],
+          [
+            0.47737036763418644,
+            0.5600733692182167
+          ],
+          [
+            0.422178548368801,
+            0.5047170130146024
+          ],
+          [
+            0.45238190297565456,
+            0.5351368514068777
+          ],
+          [
+            0.4381494287047275,
+            0.5208407642664501
+          ],
+          [
+            0.4133245169575779,
+            0.49574069354372874
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48174,
+          22949,
+          11038,
+          5316,
+          2483,
+          1216,
+          557
+        ],
+        "errors_at_readout_by_round": [
+          44969,
+          21785,
+          10406,
+          4997,
+          2393,
+          1125,
+          538,
+          253
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8745827704910889,
+          0.8242243270684705,
+          0.7817018113747728,
+          0.7458875485044734,
+          0.7136693952555963,
+          0.6895159591778816,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -5.026843139275016e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48174,
+            "discarded": 51826
+          },
+          {
+            "stage": 2,
+            "entered": 48174,
+            "accepted": 22949,
+            "discarded": 25225
+          },
+          {
+            "stage": 3,
+            "entered": 22949,
+            "accepted": 11038,
+            "discarded": 11911
+          },
+          {
+            "stage": 4,
+            "entered": 11038,
+            "accepted": 5316,
+            "discarded": 5722
+          },
+          {
+            "stage": 5,
+            "entered": 5316,
+            "accepted": 2483,
+            "discarded": 2833
+          },
+          {
+            "stage": 6,
+            "entered": 2483,
+            "accepted": 1216,
+            "discarded": 1267
+          },
+          {
+            "stage": 7,
+            "entered": 1216,
+            "accepted": 557,
+            "discarded": 659
+          }
+        ],
+        "final_round_entered": 557,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99443,
+          "accepted_bits": 4456,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191733,
+          "readouts": 191733,
+          "encoding_ancillas": 191733,
+          "reset_attempts": 191176,
+          "reset_ancillas": 191176,
+          "successful_reset_stages": 91733,
+          "classical_protocol_bits": 574642,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101006,
+      "elapsed_seconds": 0.29281170800095424,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101006,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99429,
+        "accepted_blocks": 571,
+        "accepted_bits": 4568,
+        "fully_correct_accepted_blocks": 4,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191405,
+        "readouts": 191405,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191405,
+        "reset_ancillas": 190834,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 190834,
+        "successful_reset_stages": 91405,
+        "classical_protocol_bits": 573644,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00571,
+        "block_acceptance_ci95": [
+          0.005261604117263679,
+          0.006196370317573663
+        ],
+        "raw_bits_per_transmission": 0.04568,
+        "accepted_raw_bit_errors": 2265,
+        "accepted_raw_error_rate": 0.49584063047285465,
+        "accepted_raw_error_standard_error_by_block": 0.007412032946115434,
+        "accepted_error_by_round": [
+          277,
+          276,
+          299,
+          306,
+          273,
+          294,
+          282,
+          258
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.44435760272912894,
+            0.5260690257974981
+          ],
+          [
+            0.4426224777976873,
+            0.5243249305556018
+          ],
+          [
+            0.48265644161262455,
+            0.5643130307274383
+          ],
+          [
+            0.4948930956903187,
+            0.5764309178631101
+          ],
+          [
+            0.4374200973216084,
+            0.5190896505116667
+          ],
+          [
+            0.4739309742025019,
+            0.5556423972708711
+          ],
+          [
+            0.45304070619984105,
+            0.534782023193476
+          ],
+          [
+            0.411475794577141,
+            0.4928456506560642
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47788,
+          22978,
+          11080,
+          5332,
+          2480,
+          1176,
+          571
+        ],
+        "errors_at_readout_by_round": [
+          44999,
+          21466,
+          10237,
+          4939,
+          2456,
+          1117,
+          531,
+          258
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8753242231699886,
+          0.8264455738143609,
+          0.7821766417214057,
+          0.740180241734007,
+          0.7063180868739074,
+          0.6816104173020021,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.929760277981201e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47788,
+            "discarded": 52212
+          },
+          {
+            "stage": 2,
+            "entered": 47788,
+            "accepted": 22978,
+            "discarded": 24810
+          },
+          {
+            "stage": 3,
+            "entered": 22978,
+            "accepted": 11080,
+            "discarded": 11898
+          },
+          {
+            "stage": 4,
+            "entered": 11080,
+            "accepted": 5332,
+            "discarded": 5748
+          },
+          {
+            "stage": 5,
+            "entered": 5332,
+            "accepted": 2480,
+            "discarded": 2852
+          },
+          {
+            "stage": 6,
+            "entered": 2480,
+            "accepted": 1176,
+            "discarded": 1304
+          },
+          {
+            "stage": 7,
+            "entered": 1176,
+            "accepted": 571,
+            "discarded": 605
+          }
+        ],
+        "final_round_entered": 571,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99429,
+          "accepted_bits": 4568,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191405,
+          "readouts": 191405,
+          "encoding_ancillas": 191405,
+          "reset_attempts": 190834,
+          "reset_ancillas": 190834,
+          "successful_reset_stages": 91405,
+          "classical_protocol_bits": 573644,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101007,
+      "elapsed_seconds": 0.2968857499945443,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101007,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99456,
+        "accepted_blocks": 544,
+        "accepted_bits": 4352,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 190768,
+        "readouts": 190768,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 190768,
+        "reset_ancillas": 190224,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 190224,
+        "successful_reset_stages": 90768,
+        "classical_protocol_bits": 571760,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00544,
+        "block_acceptance_ci95": [
+          0.005002717566878926,
+          0.005915277611039212
+        ],
+        "raw_bits_per_transmission": 0.04352,
+        "accepted_raw_bit_errors": 2115,
+        "accepted_raw_error_rate": 0.4859834558823529,
+        "accepted_raw_error_standard_error_by_block": 0.007900982141852236,
+        "accepted_error_by_round": [
+          288,
+          247,
+          283,
+          261,
+          264,
+          279,
+          264,
+          229
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.48740870814104065,
+            0.5710023512718131
+          ],
+          [
+            0.4126735257806014,
+            0.4960591938868147
+          ],
+          [
+            0.47824400047714266,
+            0.5619136028691942
+          ],
+          [
+            0.43808639713080577,
+            0.5217559995228573
+          ],
+          [
+            0.4435464084551779,
+            0.5272480618383952
+          ],
+          [
+            0.4709223763390832,
+            0.5546324621540403
+          ],
+          [
+            0.4435464084551779,
+            0.5272480618383952
+          ],
+          [
+            0.3801641115970753,
+            0.46285616623088044
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47621,
+          22810,
+          10862,
+          5249,
+          2496,
+          1186,
+          544
+        ],
+        "errors_at_readout_by_round": [
+          44694,
+          21546,
+          10116,
+          4837,
+          2371,
+          1113,
+          517,
+          229
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8736519070583074,
+          0.8268353494699009,
+          0.7830713399532545,
+          0.7436817788008567,
+          0.7128577135294324,
+          0.6822552762513432,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.554980941215894e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47621,
+            "discarded": 52379
+          },
+          {
+            "stage": 2,
+            "entered": 47621,
+            "accepted": 22810,
+            "discarded": 24811
+          },
+          {
+            "stage": 3,
+            "entered": 22810,
+            "accepted": 10862,
+            "discarded": 11948
+          },
+          {
+            "stage": 4,
+            "entered": 10862,
+            "accepted": 5249,
+            "discarded": 5613
+          },
+          {
+            "stage": 5,
+            "entered": 5249,
+            "accepted": 2496,
+            "discarded": 2753
+          },
+          {
+            "stage": 6,
+            "entered": 2496,
+            "accepted": 1186,
+            "discarded": 1310
+          },
+          {
+            "stage": 7,
+            "entered": 1186,
+            "accepted": 544,
+            "discarded": 642
+          }
+        ],
+        "final_round_entered": 544,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99456,
+          "accepted_bits": 4352,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 190768,
+          "readouts": 190768,
+          "encoding_ancillas": 190768,
+          "reset_attempts": 190224,
+          "reset_ancillas": 190224,
+          "successful_reset_stages": 90768,
+          "classical_protocol_bits": 571760,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101008,
+      "elapsed_seconds": 0.2935952499974519,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101008,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99457,
+        "accepted_blocks": 543,
+        "accepted_bits": 4344,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191468,
+        "readouts": 191468,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191468,
+        "reset_ancillas": 190925,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 190925,
+        "successful_reset_stages": 91468,
+        "classical_protocol_bits": 573861,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00543,
+        "block_acceptance_ci95": [
+          0.004993134487467315,
+          0.005904861458713074
+        ],
+        "raw_bits_per_transmission": 0.04344,
+        "accepted_raw_bit_errors": 2111,
+        "accepted_raw_error_rate": 0.48595764272559855,
+        "accepted_raw_error_standard_error_by_block": 0.007888629443179378,
+        "accepted_error_by_round": [
+          263,
+          276,
+          278,
+          279,
+          261,
+          252,
+          262,
+          240
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4425695102446068,
+            0.5263428687899643
+          ],
+          [
+            0.4663277145415593,
+            0.5501304377342561
+          ],
+          [
+            0.46999129283832286,
+            0.5537815937822993
+          ],
+          [
+            0.4718239294376909,
+            0.5556063243553346
+          ],
+          [
+            0.43892287571805233,
+            0.522674768971712
+          ],
+          [
+            0.42254106106744355,
+            0.5061402790706899
+          ],
+          [
+            0.4407459102004376,
+            0.52450910166173
+          ],
+          [
+            0.40077040827223553,
+            0.48402252579705696
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48000,
+          23096,
+          11013,
+          5265,
+          2413,
+          1138,
+          543
+        ],
+        "errors_at_readout_by_round": [
+          44751,
+          21563,
+          10463,
+          4929,
+          2278,
+          1089,
+          493,
+          240
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8735019050917905,
+          0.8207195686311477,
+          0.7788886572626409,
+          0.7426797758930416,
+          0.7153757713516657,
+          0.6880690278038389,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.3631764867768654e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48000,
+            "discarded": 52000
+          },
+          {
+            "stage": 2,
+            "entered": 48000,
+            "accepted": 23096,
+            "discarded": 24904
+          },
+          {
+            "stage": 3,
+            "entered": 23096,
+            "accepted": 11013,
+            "discarded": 12083
+          },
+          {
+            "stage": 4,
+            "entered": 11013,
+            "accepted": 5265,
+            "discarded": 5748
+          },
+          {
+            "stage": 5,
+            "entered": 5265,
+            "accepted": 2413,
+            "discarded": 2852
+          },
+          {
+            "stage": 6,
+            "entered": 2413,
+            "accepted": 1138,
+            "discarded": 1275
+          },
+          {
+            "stage": 7,
+            "entered": 1138,
+            "accepted": 543,
+            "discarded": 595
+          }
+        ],
+        "final_round_entered": 543,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99457,
+          "accepted_bits": 4344,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191468,
+          "readouts": 191468,
+          "encoding_ancillas": 191468,
+          "reset_attempts": 190925,
+          "reset_ancillas": 190925,
+          "successful_reset_stages": 91468,
+          "classical_protocol_bits": 573861,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101009,
+      "elapsed_seconds": 0.29815816700283904,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101009,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99401,
+        "accepted_blocks": 599,
+        "accepted_bits": 4792,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 192170,
+        "readouts": 192170,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 192170,
+        "reset_ancillas": 191571,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191571,
+        "successful_reset_stages": 92170,
+        "classical_protocol_bits": 575911,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00599,
+        "block_acceptance_ci95": [
+          0.005530357214169224,
+          0.006487595709325071
+        ],
+        "raw_bits_per_transmission": 0.04792,
+        "accepted_raw_bit_errors": 2385,
+        "accepted_raw_error_rate": 0.4977045075125209,
+        "accepted_raw_error_standard_error_by_block": 0.007457043834106533,
+        "accepted_error_by_round": [
+          285,
+          317,
+          315,
+          300,
+          295,
+          302,
+          297,
+          274
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4360805480120461,
+            0.5158139350636018
+          ],
+          [
+            0.48918375021700966,
+            0.568874632277898
+          ],
+          [
+            0.48585151605238003,
+            0.5655716227288239
+          ],
+          [
+            0.4609162615571598,
+            0.5407425493712661
+          ],
+          [
+            0.4526266284315641,
+            0.5324440732126026
+          ],
+          [
+            0.46423520981754024,
+            0.5440588448245894
+          ],
+          [
+            0.4559411551754106,
+            0.5357647901824598
+          ],
+          [
+            0.417931128333037,
+            0.4974695143172405
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48213,
+          23052,
+          11114,
+          5379,
+          2580,
+          1233,
+          599
+        ],
+        "errors_at_readout_by_round": [
+          44938,
+          21794,
+          10387,
+          4936,
+          2386,
+          1146,
+          565,
+          274
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.933012701892219,
+          0.8746746486205101,
+          0.8236101765266126,
+          0.7801821899981406,
+          0.7482187947255587,
+          0.7125153067349089,
+          0.6906789062412224,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -5.862298646057369e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48213,
+            "discarded": 51787
+          },
+          {
+            "stage": 2,
+            "entered": 48213,
+            "accepted": 23052,
+            "discarded": 25161
+          },
+          {
+            "stage": 3,
+            "entered": 23052,
+            "accepted": 11114,
+            "discarded": 11938
+          },
+          {
+            "stage": 4,
+            "entered": 11114,
+            "accepted": 5379,
+            "discarded": 5735
+          },
+          {
+            "stage": 5,
+            "entered": 5379,
+            "accepted": 2580,
+            "discarded": 2799
+          },
+          {
+            "stage": 6,
+            "entered": 2580,
+            "accepted": 1233,
+            "discarded": 1347
+          },
+          {
+            "stage": 7,
+            "entered": 1233,
+            "accepted": 599,
+            "discarded": 634
+          }
+        ],
+        "final_round_entered": 599,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99401,
+          "accepted_bits": 4792,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 192170,
+          "readouts": 192170,
+          "encoding_ancillas": 192170,
+          "reset_attempts": 191571,
+          "reset_ancillas": 191571,
+          "successful_reset_stages": 92170,
+          "classical_protocol_bits": 575911,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101010,
+      "elapsed_seconds": 0.29497737500059884,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101010,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99457,
+        "accepted_blocks": 543,
+        "accepted_bits": 4344,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 190611,
+        "readouts": 190611,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 190611,
+        "reset_ancillas": 190068,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 190068,
+        "successful_reset_stages": 90611,
+        "classical_protocol_bits": 571290,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00543,
+        "block_acceptance_ci95": [
+          0.004993134487467315,
+          0.005904861458713074
+        ],
+        "raw_bits_per_transmission": 0.04344,
+        "accepted_raw_bit_errors": 2192,
+        "accepted_raw_error_rate": 0.5046040515653776,
+        "accepted_raw_error_standard_error_by_block": 0.00788565426712431,
+        "accepted_error_by_round": [
+          262,
+          282,
+          274,
+          302,
+          273,
+          283,
+          275,
+          241
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4407459102004376,
+            0.52450910166173
+          ],
+          [
+            0.47732523102828817,
+            0.5610771242819478
+          ],
+          [
+            0.46266639531479326,
+            0.5464770226162153
+          ],
+          [
+            0.514131175804965,
+            0.5974185229533392
+          ],
+          [
+            0.46083658263865823,
+            0.544649468119947
+          ],
+          [
+            0.4791601295090086,
+            0.5628995929736307
+          ],
+          [
+            0.46449677259293853,
+            0.5483040125104734
+          ],
+          [
+            0.40258147704666086,
+            0.485868824195035
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47756,
+          22718,
+          10866,
+          5109,
+          2427,
+          1192,
+          543
+        ],
+        "errors_at_readout_by_round": [
+          44979,
+          21525,
+          10221,
+          4887,
+          2349,
+          1114,
+          529,
+          241
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922189,
+          0.8746544590192797,
+          0.8242329339692547,
+          0.7805947419427216,
+          0.7420779540394851,
+          0.70843607119072,
+          0.6916966828944243,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -3.919087276926803e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47756,
+            "discarded": 52244
+          },
+          {
+            "stage": 2,
+            "entered": 47756,
+            "accepted": 22718,
+            "discarded": 25038
+          },
+          {
+            "stage": 3,
+            "entered": 22718,
+            "accepted": 10866,
+            "discarded": 11852
+          },
+          {
+            "stage": 4,
+            "entered": 10866,
+            "accepted": 5109,
+            "discarded": 5757
+          },
+          {
+            "stage": 5,
+            "entered": 5109,
+            "accepted": 2427,
+            "discarded": 2682
+          },
+          {
+            "stage": 6,
+            "entered": 2427,
+            "accepted": 1192,
+            "discarded": 1235
+          },
+          {
+            "stage": 7,
+            "entered": 1192,
+            "accepted": 543,
+            "discarded": 649
+          }
+        ],
+        "final_round_entered": 543,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99457,
+          "accepted_bits": 4344,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 190611,
+          "readouts": 190611,
+          "encoding_ancillas": 190611,
+          "reset_attempts": 190068,
+          "reset_ancillas": 190068,
+          "successful_reset_stages": 90611,
+          "classical_protocol_bits": 571290,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101011,
+      "elapsed_seconds": 0.29620166700624395,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101011,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99423,
+        "accepted_blocks": 577,
+        "accepted_bits": 4616,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191722,
+        "readouts": 191722,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191722,
+        "reset_ancillas": 191145,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191145,
+        "successful_reset_stages": 91722,
+        "classical_protocol_bits": 574589,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00577,
+        "block_acceptance_ci95": [
+          0.005319170904118054,
+          0.00625879892114578
+        ],
+        "raw_bits_per_transmission": 0.04616,
+        "accepted_raw_bit_errors": 2248,
+        "accepted_raw_error_rate": 0.48700173310225303,
+        "accepted_raw_error_standard_error_by_block": 0.0073201120489898965,
+        "accepted_error_by_round": [
+          287,
+          283,
+          272,
+          292,
+          297,
+          283,
+          274,
+          260
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4567560336694702,
+            0.5380790457580711
+          ],
+          [
+            0.4498762678523261,
+            0.5311856900486582
+          ],
+          [
+            0.43099700089592635,
+            0.5121888728070265
+          ],
+          [
+            0.4653666612596857,
+            0.5466848200760513
+          ],
+          [
+            0.4739894250729615,
+            0.5552784581709718
+          ],
+          [
+            0.4498762678523261,
+            0.5311856900486582
+          ],
+          [
+            0.4344252150782852,
+            0.5156472193879461
+          ],
+          [
+            0.41046877753870137,
+            0.4913977315845809
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47983,
+          22924,
+          11080,
+          5350,
+          2588,
+          1220,
+          577
+        ],
+        "errors_at_readout_by_round": [
+          44954,
+          21491,
+          10366,
+          4943,
+          2402,
+          1160,
+          540,
+          260
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8748647705461524,
+          0.8245027112530086,
+          0.7815026213813536,
+          0.7447634825680572,
+          0.713146686530867,
+          0.6883858881826245,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.3631764867768654e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47983,
+            "discarded": 52017
+          },
+          {
+            "stage": 2,
+            "entered": 47983,
+            "accepted": 22924,
+            "discarded": 25059
+          },
+          {
+            "stage": 3,
+            "entered": 22924,
+            "accepted": 11080,
+            "discarded": 11844
+          },
+          {
+            "stage": 4,
+            "entered": 11080,
+            "accepted": 5350,
+            "discarded": 5730
+          },
+          {
+            "stage": 5,
+            "entered": 5350,
+            "accepted": 2588,
+            "discarded": 2762
+          },
+          {
+            "stage": 6,
+            "entered": 2588,
+            "accepted": 1220,
+            "discarded": 1368
+          },
+          {
+            "stage": 7,
+            "entered": 1220,
+            "accepted": 577,
+            "discarded": 643
+          }
+        ],
+        "final_round_entered": 577,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99423,
+          "accepted_bits": 4616,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191722,
+          "readouts": 191722,
+          "encoding_ancillas": 191722,
+          "reset_attempts": 191145,
+          "reset_ancillas": 191145,
+          "successful_reset_stages": 91722,
+          "classical_protocol_bits": 574589,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101012,
+      "elapsed_seconds": 0.29608595800527837,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101012,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99426,
+        "accepted_blocks": 574,
+        "accepted_bits": 4592,
+        "fully_correct_accepted_blocks": 1,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191701,
+        "readouts": 191701,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191701,
+        "reset_ancillas": 191127,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191127,
+        "successful_reset_stages": 91701,
+        "classical_protocol_bits": 574529,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00574,
+        "block_acceptance_ci95": [
+          0.005290385897479814,
+          0.006227586232570774
+        ],
+        "raw_bits_per_transmission": 0.04592,
+        "accepted_raw_bit_errors": 2281,
+        "accepted_raw_error_rate": 0.49673344947735193,
+        "accepted_raw_error_standard_error_by_block": 0.007296315714242178,
+        "accepted_error_by_round": [
+          293,
+          302,
+          288,
+          305,
+          285,
+          281,
+          270,
+          257
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4696248528696444,
+            0.5511420890256128
+          ],
+          [
+            0.48524655651687887,
+            0.5666707982212642
+          ],
+          [
+            0.4609633556356826,
+            0.5424978013468603
+          ],
+          [
+            0.49046266888667095,
+            0.5718381567991007
+          ],
+          [
+            0.4557723576430669,
+            0.5373053283918473
+          ],
+          [
+            0.4488579109743872,
+            0.5303751471303556
+          ],
+          [
+            0.4298838019290463,
+            0.511276529367725
+          ],
+          [
+            0.40753702121331725,
+            0.4886282693103968
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47794,
+          23150,
+          11151,
+          5291,
+          2525,
+          1216,
+          574
+        ],
+        "errors_at_readout_by_round": [
+          44977,
+          21584,
+          10404,
+          5031,
+          2369,
+          1143,
+          533,
+          257
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.933012701892219,
+          0.8752656587473001,
+          0.8269022062058058,
+          0.7845397845397843,
+          0.748739877922267,
+          0.7153336403362228,
+          0.6871577742239244,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.929760277981201e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47794,
+            "discarded": 52206
+          },
+          {
+            "stage": 2,
+            "entered": 47794,
+            "accepted": 23150,
+            "discarded": 24644
+          },
+          {
+            "stage": 3,
+            "entered": 23150,
+            "accepted": 11151,
+            "discarded": 11999
+          },
+          {
+            "stage": 4,
+            "entered": 11151,
+            "accepted": 5291,
+            "discarded": 5860
+          },
+          {
+            "stage": 5,
+            "entered": 5291,
+            "accepted": 2525,
+            "discarded": 2766
+          },
+          {
+            "stage": 6,
+            "entered": 2525,
+            "accepted": 1216,
+            "discarded": 1309
+          },
+          {
+            "stage": 7,
+            "entered": 1216,
+            "accepted": 574,
+            "discarded": 642
+          }
+        ],
+        "final_round_entered": 574,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99426,
+          "accepted_bits": 4592,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191701,
+          "readouts": 191701,
+          "encoding_ancillas": 191701,
+          "reset_attempts": 191127,
+          "reset_ancillas": 191127,
+          "successful_reset_stages": 91701,
+          "classical_protocol_bits": 574529,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101013,
+      "elapsed_seconds": 0.29601929199998267,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101013,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99426,
+        "accepted_blocks": 574,
+        "accepted_bits": 4592,
+        "fully_correct_accepted_blocks": 2,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 192173,
+        "readouts": 192173,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 192173,
+        "reset_ancillas": 191599,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191599,
+        "successful_reset_stages": 92173,
+        "classical_protocol_bits": 575945,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00574,
+        "block_acceptance_ci95": [
+          0.005290385897479814,
+          0.006227586232570774
+        ],
+        "raw_bits_per_transmission": 0.04592,
+        "accepted_raw_bit_errors": 2258,
+        "accepted_raw_error_rate": 0.4917247386759582,
+        "accepted_raw_error_standard_error_by_block": 0.00755502332731689,
+        "accepted_error_by_round": [
+          291,
+          295,
+          262,
+          303,
+          272,
+          289,
+          295,
+          251
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4661587786489132,
+            0.5476858492812584
+          ],
+          [
+            0.4730928949824456,
+            0.5545963608778974
+          ],
+          [
+            0.41612199924437276,
+            0.4973490761920557
+          ],
+          [
+            0.4869847666076518,
+            0.568393745113034
+          ],
+          [
+            0.43332920177873585,
+            0.5147534434831211
+          ],
+          [
+            0.4626946716081526,
+            0.544227642356933
+          ],
+          [
+            0.4730928949824456,
+            0.5545963608778974
+          ],
+          [
+            0.3972515473710151,
+            0.4781468012574419
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48202,
+          23141,
+          11093,
+          5372,
+          2570,
+          1221,
+          574
+        ],
+        "errors_at_readout_by_round": [
+          45001,
+          21805,
+          10413,
+          4983,
+          2381,
+          1183,
+          541,
+          251
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8740763147659998,
+          0.8239160965707245,
+          0.7814076603163648,
+          0.7415052298573275,
+          0.7131177224060616,
+          0.6802509576445704,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -5.029310301551959e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48202,
+            "discarded": 51798
+          },
+          {
+            "stage": 2,
+            "entered": 48202,
+            "accepted": 23141,
+            "discarded": 25061
+          },
+          {
+            "stage": 3,
+            "entered": 23141,
+            "accepted": 11093,
+            "discarded": 12048
+          },
+          {
+            "stage": 4,
+            "entered": 11093,
+            "accepted": 5372,
+            "discarded": 5721
+          },
+          {
+            "stage": 5,
+            "entered": 5372,
+            "accepted": 2570,
+            "discarded": 2802
+          },
+          {
+            "stage": 6,
+            "entered": 2570,
+            "accepted": 1221,
+            "discarded": 1349
+          },
+          {
+            "stage": 7,
+            "entered": 1221,
+            "accepted": 574,
+            "discarded": 647
+          }
+        ],
+        "final_round_entered": 574,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99426,
+          "accepted_bits": 4592,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 192173,
+          "readouts": 192173,
+          "encoding_ancillas": 192173,
+          "reset_attempts": 191599,
+          "reset_ancillas": 191599,
+          "successful_reset_stages": 92173,
+          "classical_protocol_bits": 575945,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101014,
+      "elapsed_seconds": 0.2964250829973025,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101014,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99398,
+        "accepted_blocks": 602,
+        "accepted_bits": 4816,
+        "fully_correct_accepted_blocks": 3,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191487,
+        "readouts": 191487,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191487,
+        "reset_ancillas": 190885,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 190885,
+        "successful_reset_stages": 91487,
+        "classical_protocol_bits": 573859,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00602,
+        "block_acceptance_ci95": [
+          0.0055591681673167696,
+          0.006518782451390773
+        ],
+        "raw_bits_per_transmission": 0.04816,
+        "accepted_raw_bit_errors": 2437,
+        "accepted_raw_error_rate": 0.5060215946843853,
+        "accepted_raw_error_standard_error_by_block": 0.0072989810826766775,
+        "accepted_error_by_round": [
+          313,
+          317,
+          294,
+          302,
+          312,
+          304,
+          312,
+          283
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4800243584183252,
+            0.5595899658418823
+          ],
+          [
+            0.4866512256021026,
+            0.5661678734115071
+          ],
+          [
+            0.44864226605800606,
+            0.5282493781235396
+          ],
+          [
+            0.4618365595415367,
+            0.5414646341468138
+          ],
+          [
+            0.47836873633497684,
+            0.5579443942368796
+          ],
+          [
+            0.4651394999165761,
+            0.5447640811484757
+          ],
+          [
+            0.47836873633497684,
+            0.5579443942368796
+          ],
+          [
+            0.43054580299655926,
+            0.5100327106131297
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47990,
+          22832,
+          10901,
+          5327,
+          2566,
+          1269,
+          602
+        ],
+        "errors_at_readout_by_round": [
+          45115,
+          21669,
+          10327,
+          4902,
+          2386,
+          1198,
+          585,
+          283
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8760336370007007,
+          0.8263980709520561,
+          0.7841726684584283,
+          0.7470761983374775,
+          0.719502637754445,
+          0.693874025106946,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.52176709177239e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47990,
+            "discarded": 52010
+          },
+          {
+            "stage": 2,
+            "entered": 47990,
+            "accepted": 22832,
+            "discarded": 25158
+          },
+          {
+            "stage": 3,
+            "entered": 22832,
+            "accepted": 10901,
+            "discarded": 11931
+          },
+          {
+            "stage": 4,
+            "entered": 10901,
+            "accepted": 5327,
+            "discarded": 5574
+          },
+          {
+            "stage": 5,
+            "entered": 5327,
+            "accepted": 2566,
+            "discarded": 2761
+          },
+          {
+            "stage": 6,
+            "entered": 2566,
+            "accepted": 1269,
+            "discarded": 1297
+          },
+          {
+            "stage": 7,
+            "entered": 1269,
+            "accepted": 602,
+            "discarded": 667
+          }
+        ],
+        "final_round_entered": 602,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99398,
+          "accepted_bits": 4816,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191487,
+          "readouts": 191487,
+          "encoding_ancillas": 191487,
+          "reset_attempts": 190885,
+          "reset_ancillas": 190885,
+          "successful_reset_stages": 91487,
+          "classical_protocol_bits": 573859,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101015,
+      "elapsed_seconds": 0.30389891599770635,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101015,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99418,
+        "accepted_blocks": 582,
+        "accepted_bits": 4656,
+        "fully_correct_accepted_blocks": 5,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 192676,
+        "readouts": 192676,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 192676,
+        "reset_ancillas": 192094,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 192094,
+        "successful_reset_stages": 92676,
+        "classical_protocol_bits": 577446,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00582,
+        "block_acceptance_ci95": [
+          0.005367153017405993,
+          0.006310812966546581
+        ],
+        "raw_bits_per_transmission": 0.04656,
+        "accepted_raw_bit_errors": 2249,
+        "accepted_raw_error_rate": 0.48303264604810997,
+        "accepted_raw_error_standard_error_by_block": 0.007673479090246003,
+        "accepted_error_by_round": [
+          282,
+          274,
+          291,
+          283,
+          292,
+          294,
+          283,
+          250
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.44416856328490806,
+            0.5251064005658338
+          ],
+          [
+            0.4305624443808975,
+            0.5114013762260593
+          ],
+          [
+            0.45951183967096854,
+            0.5404881603290315
+          ],
+          [
+            0.4458714706000716,
+            0.5268173861561434
+          ],
+          [
+            0.4612190236196651,
+            0.5421948692858082
+          ],
+          [
+            0.4646348165429724,
+            0.5456068621734471
+          ],
+          [
+            0.4458714706000716,
+            0.5268173861561434
+          ],
+          [
+            0.38992825257904284,
+            0.47010213829655867
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48465,
+          23158,
+          11207,
+          5433,
+          2611,
+          1220,
+          582
+        ],
+        "errors_at_readout_by_round": [
+          45046,
+          21853,
+          10461,
+          4922,
+          2424,
+          1168,
+          543,
+          250
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922192,
+          0.874825114431298,
+          0.8251362439924176,
+          0.7806458274411566,
+          0.7465071937605701,
+          0.7115437660552216,
+          0.6867643724461592,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.929760277981201e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48465,
+            "discarded": 51535
+          },
+          {
+            "stage": 2,
+            "entered": 48465,
+            "accepted": 23158,
+            "discarded": 25307
+          },
+          {
+            "stage": 3,
+            "entered": 23158,
+            "accepted": 11207,
+            "discarded": 11951
+          },
+          {
+            "stage": 4,
+            "entered": 11207,
+            "accepted": 5433,
+            "discarded": 5774
+          },
+          {
+            "stage": 5,
+            "entered": 5433,
+            "accepted": 2611,
+            "discarded": 2822
+          },
+          {
+            "stage": 6,
+            "entered": 2611,
+            "accepted": 1220,
+            "discarded": 1391
+          },
+          {
+            "stage": 7,
+            "entered": 1220,
+            "accepted": 582,
+            "discarded": 638
+          }
+        ],
+        "final_round_entered": 582,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99418,
+          "accepted_bits": 4656,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 192676,
+          "readouts": 192676,
+          "encoding_ancillas": 192676,
+          "reset_attempts": 192094,
+          "reset_ancillas": 192094,
+          "successful_reset_stages": 92676,
+          "classical_protocol_bits": 577446,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101016,
+      "elapsed_seconds": 0.2915531659964472,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101016,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99452,
+        "accepted_blocks": 548,
+        "accepted_bits": 4384,
+        "fully_correct_accepted_blocks": 2,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191627,
+        "readouts": 191627,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191627,
+        "reset_ancillas": 191079,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191079,
+        "successful_reset_stages": 91627,
+        "classical_protocol_bits": 574333,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00548,
+        "block_acceptance_ci95": [
+          0.005041053757131936,
+          0.005956938347737194
+        ],
+        "raw_bits_per_transmission": 0.04384,
+        "accepted_raw_bit_errors": 2214,
+        "accepted_raw_error_rate": 0.5050182481751825,
+        "accepted_raw_error_standard_error_by_block": 0.007938897527247636,
+        "accepted_error_by_round": [
+          282,
+          273,
+          290,
+          281,
+          287,
+          276,
+          277,
+          248
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.47279778365901015,
+            0.5561960509727563
+          ],
+          [
+            0.4564713664674261,
+            0.539904404203603
+          ],
+          [
+            0.48734772923837383,
+            0.5706399400251593
+          ],
+          [
+            0.4709815290011491,
+            0.5543880763016465
+          ],
+          [
+            0.48188734845187897,
+            0.5652276328247418
+          ],
+          [
+            0.46190853816378913,
+            0.5453399204941527
+          ],
+          [
+            0.46372203236961546,
+            0.5471506556172971
+          ],
+          [
+            0.41135514871573114,
+            0.4944148887310275
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48000,
+          23052,
+          11064,
+          5269,
+          2529,
+          1165,
+          548
+        ],
+        "errors_at_readout_by_round": [
+          44970,
+          21678,
+          10402,
+          5032,
+          2420,
+          1167,
+          516,
+          248
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8743102550754813,
+          0.8241668791409831,
+          0.780091561781057,
+          0.7415939356198544,
+          0.7047928428134889,
+          0.6764760277054782,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.2592560080599255e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48000,
+            "discarded": 52000
+          },
+          {
+            "stage": 2,
+            "entered": 48000,
+            "accepted": 23052,
+            "discarded": 24948
+          },
+          {
+            "stage": 3,
+            "entered": 23052,
+            "accepted": 11064,
+            "discarded": 11988
+          },
+          {
+            "stage": 4,
+            "entered": 11064,
+            "accepted": 5269,
+            "discarded": 5795
+          },
+          {
+            "stage": 5,
+            "entered": 5269,
+            "accepted": 2529,
+            "discarded": 2740
+          },
+          {
+            "stage": 6,
+            "entered": 2529,
+            "accepted": 1165,
+            "discarded": 1364
+          },
+          {
+            "stage": 7,
+            "entered": 1165,
+            "accepted": 548,
+            "discarded": 617
+          }
+        ],
+        "final_round_entered": 548,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99452,
+          "accepted_bits": 4384,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191627,
+          "readouts": 191627,
+          "encoding_ancillas": 191627,
+          "reset_attempts": 191079,
+          "reset_ancillas": 191079,
+          "successful_reset_stages": 91627,
+          "classical_protocol_bits": 574333,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101017,
+      "elapsed_seconds": 0.2950198330072453,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101017,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99399,
+        "accepted_blocks": 601,
+        "accepted_bits": 4808,
+        "fully_correct_accepted_blocks": 2,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 191797,
+        "readouts": 191797,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 191797,
+        "reset_ancillas": 191196,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191196,
+        "successful_reset_stages": 91797,
+        "classical_protocol_bits": 574790,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00601,
+        "block_acceptance_ci95": [
+          0.005549564181212307,
+          0.006508387205757485
+        ],
+        "raw_bits_per_transmission": 0.04808,
+        "accepted_raw_bit_errors": 2453,
+        "accepted_raw_error_rate": 0.5101913477537438,
+        "accepted_raw_error_standard_error_by_block": 0.007195848504825866,
+        "accepted_error_by_round": [
+          301,
+          308,
+          300,
+          310,
+          315,
+          333,
+          309,
+          277
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.4609795627094933,
+            0.5406737631090606
+          ],
+          [
+            0.4725651225478279,
+            0.5522347647304792
+          ],
+          [
+            0.4593262368909395,
+            0.5390204372905067
+          ],
+          [
+            0.47587923120493025,
+            0.5555339593475919
+          ],
+          [
+            0.48417219035915404,
+            0.5637742583789063
+          ],
+          [
+            0.5141181786156651,
+            0.593347999590332
+          ],
+          [
+            0.4742219573783572,
+            0.5538845815370574
+          ],
+          [
+            0.42142094567182903,
+            0.5008727408561422
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48159,
+          22936,
+          11073,
+          5277,
+          2516,
+          1235,
+          601
+        ],
+        "errors_at_readout_by_round": [
+          45089,
+          21527,
+          10237,
+          5004,
+          2431,
+          1143,
+          557,
+          277
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922189,
+          0.8745640041855597,
+          0.824121272478547,
+          0.7822866835831517,
+          0.7494543189195864,
+          0.7242158288367864,
+          0.688863888965665,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.929760277981201e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48159,
+            "discarded": 51841
+          },
+          {
+            "stage": 2,
+            "entered": 48159,
+            "accepted": 22936,
+            "discarded": 25223
+          },
+          {
+            "stage": 3,
+            "entered": 22936,
+            "accepted": 11073,
+            "discarded": 11863
+          },
+          {
+            "stage": 4,
+            "entered": 11073,
+            "accepted": 5277,
+            "discarded": 5796
+          },
+          {
+            "stage": 5,
+            "entered": 5277,
+            "accepted": 2516,
+            "discarded": 2761
+          },
+          {
+            "stage": 6,
+            "entered": 2516,
+            "accepted": 1235,
+            "discarded": 1281
+          },
+          {
+            "stage": 7,
+            "entered": 1235,
+            "accepted": 601,
+            "discarded": 634
+          }
+        ],
+        "final_round_entered": 601,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99399,
+          "accepted_bits": 4808,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 191797,
+          "readouts": 191797,
+          "encoding_ancillas": 191797,
+          "reset_attempts": 191196,
+          "reset_ancillas": 191196,
+          "successful_reset_stages": 91797,
+          "classical_protocol_bits": 574790,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101018,
+      "elapsed_seconds": 0.2968918330007,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101018,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99412,
+        "accepted_blocks": 588,
+        "accepted_bits": 4704,
+        "fully_correct_accepted_blocks": 2,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 192272,
+        "readouts": 192272,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 192272,
+        "reset_ancillas": 191684,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191684,
+        "successful_reset_stages": 92272,
+        "classical_protocol_bits": 576228,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00588,
+        "block_acceptance_ci95": [
+          0.005424743132629828,
+          0.006373218241749237
+        ],
+        "raw_bits_per_transmission": 0.04704,
+        "accepted_raw_bit_errors": 2353,
+        "accepted_raw_error_rate": 0.5002125850340136,
+        "accepted_raw_error_standard_error_by_block": 0.007391892263424964,
+        "accepted_error_by_round": [
+          320,
+          318,
+          290,
+          289,
+          296,
+          299,
+          290,
+          251
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.5038050811480076,
+            0.5840562864953059
+          ],
+          [
+            0.5004025634123033,
+            0.580700237489217
+          ],
+          [
+            0.4529627314544521,
+            0.5335201350619612
+          ],
+          [
+            0.451275173570619,
+            0.5318284095748976
+          ],
+          [
+            0.46309780333267286,
+            0.5436607634091204
+          ],
+          [
+            0.4681715904251023,
+            0.5487248264293809
+          ],
+          [
+            0.4529627314544521,
+            0.5335201350619612
+          ],
+          [
+            0.38749335530207657,
+            0.4671974597493664
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          48106,
+          23196,
+          11226,
+          5363,
+          2563,
+          1230,
+          588
+        ],
+        "errors_at_readout_by_round": [
+          45053,
+          21813,
+          10505,
+          5093,
+          2427,
+          1162,
+          565,
+          251
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.933012701892219,
+          0.8744438696326953,
+          0.8231367344221769,
+          0.7823642573550478,
+          0.7454484202830007,
+          0.7132381518937139,
+          0.6865583022331662,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -3.8080649744642876e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 48106,
+            "discarded": 51894
+          },
+          {
+            "stage": 2,
+            "entered": 48106,
+            "accepted": 23196,
+            "discarded": 24910
+          },
+          {
+            "stage": 3,
+            "entered": 23196,
+            "accepted": 11226,
+            "discarded": 11970
+          },
+          {
+            "stage": 4,
+            "entered": 11226,
+            "accepted": 5363,
+            "discarded": 5863
+          },
+          {
+            "stage": 5,
+            "entered": 5363,
+            "accepted": 2563,
+            "discarded": 2800
+          },
+          {
+            "stage": 6,
+            "entered": 2563,
+            "accepted": 1230,
+            "discarded": 1333
+          },
+          {
+            "stage": 7,
+            "entered": 1230,
+            "accepted": 588,
+            "discarded": 642
+          }
+        ],
+        "final_round_entered": 588,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99412,
+          "accepted_bits": 4704,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 192272,
+          "readouts": 192272,
+          "encoding_ancillas": 192272,
+          "reset_attempts": 191684,
+          "reset_ancillas": 191684,
+          "successful_reset_stages": 92272,
+          "classical_protocol_bits": 576228,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101019,
+      "elapsed_seconds": 0.29819175000011455,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101019,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99386,
+        "accepted_blocks": 614,
+        "accepted_bits": 4912,
+        "fully_correct_accepted_blocks": 2,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 192328,
+        "readouts": 192328,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 192328,
+        "reset_ancillas": 191714,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191714,
+        "successful_reset_stages": 92328,
+        "classical_protocol_bits": 576370,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.00614,
+        "block_acceptance_ci95": [
+          0.005674441815470067,
+          0.006643499584090454
+        ],
+        "raw_bits_per_transmission": 0.04912,
+        "accepted_raw_bit_errors": 2485,
+        "accepted_raw_error_rate": 0.5059039087947883,
+        "accepted_raw_error_standard_error_by_block": 0.007045211660029802,
+        "accepted_error_by_round": [
+          327,
+          314,
+          328,
+          310,
+          316,
+          300,
+          312,
+          278
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.49302828005528776,
+            0.5717132477734695
+          ],
+          [
+            0.4719142392519361,
+            0.550745295488129
+          ],
+          [
+            0.49465535933408816,
+            0.5733232448861071
+          ],
+          [
+            0.46543177092722754,
+            0.544279458247086
+          ],
+          [
+            0.4751579693401782,
+            0.5539757181827627
+          ],
+          [
+            0.449254704511871,
+            0.528085760748064
+          ],
+          [
+            0.46867217332490435,
+            0.5475132086322849
+          ],
+          [
+            0.4138118747050736,
+            0.49231290994322835
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47957,
+          23214,
+          11220,
+          5443,
+          2638,
+          1242,
+          614
+        ],
+        "errors_at_readout_by_round": [
+          45211,
+          21495,
+          10642,
+          5052,
+          2495,
+          1134,
+          557,
+          278
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8755320065477729,
+          0.8261433587106712,
+          0.7830007662560546,
+          0.7466447078741739,
+          0.7133344954652641,
+          0.6782105995244296,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.554980941215895e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47957,
+            "discarded": 52043
+          },
+          {
+            "stage": 2,
+            "entered": 47957,
+            "accepted": 23214,
+            "discarded": 24743
+          },
+          {
+            "stage": 3,
+            "entered": 23214,
+            "accepted": 11220,
+            "discarded": 11994
+          },
+          {
+            "stage": 4,
+            "entered": 11220,
+            "accepted": 5443,
+            "discarded": 5777
+          },
+          {
+            "stage": 5,
+            "entered": 5443,
+            "accepted": 2638,
+            "discarded": 2805
+          },
+          {
+            "stage": 6,
+            "entered": 2638,
+            "accepted": 1242,
+            "discarded": 1396
+          },
+          {
+            "stage": 7,
+            "entered": 1242,
+            "accepted": 614,
+            "discarded": 628
+          }
+        ],
+        "final_round_entered": 614,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99386,
+          "accepted_bits": 4912,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 192328,
+          "readouts": 192328,
+          "encoding_ancillas": 192328,
+          "reset_attempts": 191714,
+          "reset_ancillas": 191714,
+          "successful_reset_stages": 92328,
+          "classical_protocol_bits": 576370,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    },
+    {
+      "seed": 2026101020,
+      "elapsed_seconds": 0.3046526670077583,
+      "result": {
+        "length": 8,
+        "strength": 0.5,
+        "noise": 0.0,
+        "reset_mode": "coherent",
+        "max_reset_attempts": 1,
+        "seed": 2026101020,
+        "attempted_blocks": 100000,
+        "test_fraction": 0.0,
+        "link_success": 1.0,
+        "delivered_blocks": 100000,
+        "reserved_test_blocks": 0,
+        "discarded_data_blocks": 99380,
+        "accepted_blocks": 620,
+        "accepted_bits": 4960,
+        "fully_correct_accepted_blocks": 6,
+        "quantum_transmissions": 100000,
+        "bsm_rounds": 192188,
+        "readouts": 192188,
+        "ghz_preparations": 100000,
+        "ghz_qubits_initialized": 900000,
+        "encoding_ancillas": 192188,
+        "reset_ancillas": 191568,
+        "peak_alice_qubits_serial_schedule": 9,
+        "peak_bob_qubits": 1,
+        "physical_storage_time_modeled": false,
+        "reset_attempts": 191568,
+        "successful_reset_stages": 92188,
+        "classical_protocol_bits": 575944,
+        "test_and_authentication_bits_included": false,
+        "block_acceptance": 0.0062,
+        "block_acceptance_ci95": [
+          0.005732096237260304,
+          0.0067058405527267075
+        ],
+        "raw_bits_per_transmission": 0.0496,
+        "accepted_raw_bit_errors": 2461,
+        "accepted_raw_error_rate": 0.49616935483870966,
+        "accepted_raw_error_standard_error_by_block": 0.006932449393851827,
+        "accepted_error_by_round": [
+          294,
+          290,
+          319,
+          340,
+          326,
+          310,
+          303,
+          279
+        ],
+        "accepted_error_ci95_by_round": [
+          [
+            0.43516876896154477,
+            0.5135361470911769
+          ],
+          [
+            0.428786148257986,
+            0.5070949968079161
+          ],
+          [
+            0.4752075178410333,
+            0.5536459668793108
+          ],
+          [
+            0.5090365010501313,
+            0.5871417813510152
+          ],
+          [
+            0.486463852908823,
+            0.5648312310384551
+          ],
+          [
+            0.46076433853786547,
+            0.5392356614621345
+          ],
+          [
+            0.4495534814372517,
+            0.528004919335814
+          ],
+          [
+            0.41126768310111383,
+            0.48934809175103455
+          ]
+        ],
+        "reached_by_round": [
+          100000,
+          47977,
+          23422,
+          11209,
+          5263,
+          2471,
+          1226,
+          620
+        ],
+        "errors_at_readout_by_round": [
+          44920,
+          21754,
+          10564,
+          4951,
+          2370,
+          1104,
+          544,
+          279
+        ],
+        "mean_fidelity_after_accepted_reset": [
+          0.9330127018922191,
+          0.8753565024336094,
+          0.825221716416787,
+          0.7829254389826816,
+          0.7437377777240946,
+          0.7099716630811751,
+          0.6857109747244997,
+          null
+        ],
+        "minimum_sampled_state_eigenvalue": -4.929760277981201e-16,
+        "secret_key_rate_certified": false,
+        "exact_block_acceptance": 0.0058706834227199986,
+        "exact_accepted_raw_error_rate": 0.49375
+      },
+      "counter_checks": {
+        "passed": true,
+        "reset_stages": [
+          {
+            "stage": 1,
+            "entered": 100000,
+            "accepted": 47977,
+            "discarded": 52023
+          },
+          {
+            "stage": 2,
+            "entered": 47977,
+            "accepted": 23422,
+            "discarded": 24555
+          },
+          {
+            "stage": 3,
+            "entered": 23422,
+            "accepted": 11209,
+            "discarded": 12213
+          },
+          {
+            "stage": 4,
+            "entered": 11209,
+            "accepted": 5263,
+            "discarded": 5946
+          },
+          {
+            "stage": 5,
+            "entered": 5263,
+            "accepted": 2471,
+            "discarded": 2792
+          },
+          {
+            "stage": 6,
+            "entered": 2471,
+            "accepted": 1226,
+            "discarded": 1245
+          },
+          {
+            "stage": 7,
+            "entered": 1226,
+            "accepted": 620,
+            "discarded": 606
+          }
+        ],
+        "final_round_entered": 620,
+        "expected_totals": {
+          "delivered_blocks": 100000,
+          "reserved_test_blocks": 0,
+          "discarded_data_blocks": 99380,
+          "accepted_bits": 4960,
+          "quantum_transmissions": 100000,
+          "ghz_preparations": 100000,
+          "ghz_qubits_initialized": 900000,
+          "bsm_rounds": 192188,
+          "readouts": 192188,
+          "encoding_ancillas": 192188,
+          "reset_attempts": 191568,
+          "reset_ancillas": 191568,
+          "successful_reset_stages": 92188,
+          "classical_protocol_bits": 575944,
+          "peak_alice_qubits_serial_schedule": 9,
+          "peak_bob_qubits": 1
+        }
+      }
+    }
+  ]
+}
