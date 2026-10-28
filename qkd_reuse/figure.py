@@ -1,4 +1,4 @@
-"""Render Figure 1 from the analytical readout/reset probabilities.
+"""Render the analytical readout/reset tradeoff.
 
 ReportLab is imported only when the figure is requested. The PDF uses embedded
 TeX Times fonts when installed and standard Times-Roman otherwise. The open

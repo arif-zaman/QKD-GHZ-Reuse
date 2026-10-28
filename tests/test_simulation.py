@@ -340,8 +340,8 @@ class ExactProtocolTests(_CircuitFixtures):
 
 
 class EndToEndTests(unittest.TestCase):
-    def test_recorded_draw_order_has_stable_seeded_counts(self):
-        # This fixture checks the recorded sampler's draw order at NumPy
+    def test_draw_order_has_stable_seeded_counts(self):
+        # This fixture checks the sampler's draw order at NumPy
         # 2.3.5, including failed-reset branches and all preceding readouts.
         result = sim.experiment(
             5, .5, .005, 4000, 20261001, max_reset_attempts=4

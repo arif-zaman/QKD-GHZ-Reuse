@@ -47,8 +47,8 @@ def validate_record(record, config, seed):
              "Counter audit requires one reset attempt, perfect delivery, and no test blocks")
     for key in ("length", "strength", "noise", "reset_mode", "max_reset_attempts",
                 "test_fraction", "link_success"):
-        _require(record[key] == config[key], f"Unexpected recorded {key}")
-    _require(record["seed"] == seed, "Unexpected recorded seed")
+        _require(record[key] == config[key], f"Unexpected result {key}")
+    _require(record["seed"] == seed, "Unexpected result seed")
     _require(record["attempted_blocks"] == n, "Unexpected attempted-block count")
 
     reached = record["reached_by_round"]
@@ -158,5 +158,4 @@ def summarize(records, probability):
         "variance_ratio": variance / expected_variance,
         "individual_ci95_coverage_count": coverage,
         "individual_ci95_coverage_fraction": coverage / len(counts),
-        "coverage_interpretation": "Descriptive only; no requirement that any or all intervals cover.",
     }

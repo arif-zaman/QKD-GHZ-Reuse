@@ -1,19 +1,18 @@
-"""Regenerate manuscript outputs from saved or newly simulated records."""
+"""Generate analysis outputs from completed local experiments."""
 from __future__ import annotations
 
 from .analysis import amplitude_updated_predictions, fixed_filter_predictions
-from .data import (REFERENCE, load_results, new_output, provenance, read_json,
-                   sha256, write_json)
-from .experiments import SUMMARY_FIELDS, write_csv
+from .data import ROOT, load_results, new_output, provenance, sha256, write_json
+from .experiments import SUMMARY_FIELDS, seed_plan, write_csv
 from .statistics import summarize, validate_record
-from .tables import generate_tables, validate_manuscript_grid
+from .tables import generate_tables, validate_grid
 
 
 def seed_summary(data):
     """Recompute the full planned seed check, including accounting identities."""
-    plan = read_json(REFERENCE / "seed-plan.json")
+    plan = seed_plan()
     if data.get("plan") != plan:
-        raise ValueError("Seed-check data must use the original prespecified plan")
+        raise ValueError("Seed-check data must use the configured study plan")
     runs = data.get("runs", [])
     if [item.get("seed") for item in runs] != plan["seeds"]:
         raise ValueError("Seed-check data must contain all 20 seeds in their planned order")
@@ -26,7 +25,7 @@ def seed_summary(data):
 
 
 def retry_comparison():
-    """The exact fixed-filter versus amplitude-updated comparison in Section V-C."""
+    """Compare exact predictions for fixed-filter and amplitude-updated retries."""
     rows = []
     for policy, predict in (("fixed", fixed_filter_predictions),
                             ("amplitude-updated", amplitude_updated_predictions)):
@@ -41,13 +40,21 @@ def reproduce(output, grid_path=None, seed_path=None, include_figure=True):
     """Regenerate tables, plot data, exact retry comparison, and seed summary.
 
     This reads existing experiment records; it does not run Monte Carlo.
-    The output directory must be new or empty. Paper inputs are never replaced.
+    Run ``grid`` and ``seed-check`` first. The output directory must be new or
+    empty; experiment inputs are never replaced.
     """
-    grid_path = grid_path or REFERENCE / "grid.json"
-    seed_path = seed_path or REFERENCE / "seed-check.json"
-    grid = load_results(grid_path, "grid.json")
-    seed_data = load_results(seed_path, "seed-check.json")
-    validate_manuscript_grid(grid)
+    grid_path = grid_path or ROOT / "output/grid/results.json"
+    seed_path = seed_path or ROOT / "output/seed-check/results.json"
+    try:
+        grid = load_results(grid_path)
+        seed_data = load_results(seed_path)
+    except FileNotFoundError as error:
+        raise ValueError(
+            f"Missing experiment results: {error.filename}. "
+            "Run 'python -m qkd_reuse grid' and 'python -m qkd_reuse seed-check' first, "
+            "or supply completed results with --grid and --seed-check."
+        ) from error
+    validate_grid(grid)
     records, summary = seed_summary(seed_data)
     if include_figure:
         from .figure import make_figure
@@ -69,36 +76,9 @@ def reproduce(output, grid_path=None, seed_path=None, include_figure=True):
     if include_figure:
         make_figure(output / "readout-reset-tradeoff.pdf")
     write_json(output / "manifest.json", {
-        "complete": True, "operation": "regenerate from recorded experiments",
+        "complete": True, "operation": "generate from completed experiments",
         "inputs": {"grid_sha256": sha256(grid_path),
                    "seed_check_sha256": sha256(seed_path)},
         "provenance": provenance(),
     })
-    low, high = summary["pooled_wilson_ci95"]
-    text = f"""# Reproduced results
-
-The two LaTeX tables are in `tables/`. `tradeoff.csv` supplies Figure 1's
-analytical curves; its conditional endpoint at delta=1 is undefined (blank).
-`retry-comparison.csv` and `.json` give the exact policy comparison for L=5,
-delta=0.2, g=0.5, p=0, with R=1,2,4. Costs include rejected blocks.
-
-## Independent seed check
-
-- Runs: {summary['number_of_runs']}; total attempts: {summary['total_attempts']:,}.
-- Accepted blocks: {summary['total_accepted']:,}.
-- Exact acceptance: {summary['expected_acceptance']:.12g}.
-- Pooled acceptance: {summary['pooled_acceptance']:.12g}.
-- Pooled 95% Wilson interval: [{low:.12g}, {high:.12g}].
-- Sample/binomial count variance ratio: {summary['variance_ratio']:.8g}.
-- Individual intervals containing theory: {summary['individual_ci95_coverage_count']}/20.
-
-All per-stage and total counter checks passed. Coverage and variance are
-descriptive, not pass/fail criteria. Per-seed records are in `per-seed.csv`;
-full summary statistics are in `seed-summary.json`.
-
-These outputs concern readout, postselection, and resource costs. They do not
-certify secrecy or a positive secret-key rate. The manifest records input and
-code hashes; this command does not run fresh simulations.
-"""
-    (output / "README.md").write_text(text, encoding="utf-8")
     return output

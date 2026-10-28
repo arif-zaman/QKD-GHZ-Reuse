@@ -1,4 +1,4 @@
-"""Generate the two sampled manuscript tables from a complete experiment grid.
+"""Generate the two sampled-results tables from a complete experiment grid.
 
 Validation is performed before writing either file. Source integrity is the
 caller's responsibility; this module validates the data needed by the tables.
@@ -43,30 +43,30 @@ def _integer(row, key, prefix, lower, upper):
     return value
 
 
-def validate_manuscript_grid(data):
-    """Return all 27 rows in manuscript order, rejecting unsupported inputs.
+def validate_grid(data):
+    """Return all 27 rows in grid order, rejecting unsupported inputs.
 
     Each configuration must have 100,000 attempted blocks, ideal delivery,
     and no reserved tests. Smoke runs and incomplete results cannot supply
-    manuscript tables. All displayed probabilities, counts, intervals, and
+    the tables. All displayed probabilities, counts, intervals, and
     uncertainties must be finite and have valid ranges. A confidence interval
     is not required to contain the exact analytical probability.
     """
     if (not isinstance(data, dict) or type(data.get("schema")) is not int
             or data["schema"] != 1):
-        raise ValueError("Expected manuscript-grid schema 1")
+        raise ValueError("Expected experiment-grid schema 1")
     if "complete" in data and data["complete"] is not True:
-        raise ValueError("Manuscript tables require a complete experiment grid")
+        raise ValueError("Tables require a complete experiment grid")
     attempts = data.get("independent_attempts_per_configuration")
     if type(attempts) is not int or attempts != _ATTEMPTS:
         raise ValueError("Tables require 100,000 attempts per configuration; smoke runs are unsupported")
     rows = data.get("results")
     if not isinstance(rows, list) or len(rows) != len(_EXPECTED_CONFIGS):
-        raise ValueError("Tables require the complete 27-configuration manuscript grid")
+        raise ValueError("Tables require the complete 27-configuration experiment grid")
 
     by_config = {}
     for index, row in enumerate(rows, start=1):
-        prefix = f"Manuscript-grid row {index}: "
+        prefix = f"Experiment-grid row {index}: "
         if not isinstance(row, dict):
             raise ValueError(prefix + "must be a JSON object")
         length = _integer(row, "length", prefix, 1, 12)
@@ -77,9 +77,9 @@ def validate_manuscript_grid(data):
             raise ValueError(prefix + "reset_mode must be coherent or mixed")
         config = tuple(row[key] for key in _CONFIG_FIELDS)
         if config not in _EXPECTED_CONFIGS:
-            raise ValueError(prefix + "unsupported manuscript configuration")
+            raise ValueError(prefix + "unsupported grid configuration")
         if config in by_config:
-            raise ValueError(prefix + "duplicate manuscript configuration")
+            raise ValueError(prefix + "duplicate grid configuration")
 
         _integer(row, "attempted_blocks", prefix, _ATTEMPTS, _ATTEMPTS)
         _number(row, "test_fraction", prefix, 0, 0)
@@ -163,12 +163,12 @@ def _retry_table(rows):
 
 
 def generate_tables(data, output_dir):
-    """Write Table II and Table III after validating the entire loaded grid.
+    """Write the diagnostic and reset-policy tables after validating the grid.
 
     Returns the two output paths. Existing files with these names are replaced;
     no other output files are changed. The input data are not modified.
     """
-    rows = validate_manuscript_grid(data)
+    rows = validate_grid(data)
     contents = {
         "diagnostic-results.tex": _sampled_table(rows),
         "reset-policy.tex": _retry_table(rows),

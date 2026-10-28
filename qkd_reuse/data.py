@@ -1,4 +1,4 @@
-"""Saved-data integrity, output directories, and execution metadata."""
+"""Experiment result loading, output directories, and execution metadata."""
 from __future__ import annotations
 
 import hashlib
@@ -9,7 +9,6 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-REFERENCE = ROOT / "reference"
 
 
 def sha256(path):
@@ -32,24 +31,15 @@ def write_json(path, value):
 def new_output(path):
     """Require a new or empty output directory outside package inputs."""
     path = Path(path).resolve()
-    protected = [ROOT / name for name in ("reference", "qkd_reuse", "tests", "docs")]
+    protected = [ROOT / name for name in ("qkd_reuse", "tests")]
     if path == ROOT or path in ROOT.parents or any(
         path == item or item in path.parents for item in protected
     ):
-        raise ValueError("Choose an output directory outside the source and reference folders")
+        raise ValueError("Choose an output directory outside the source folders")
     if path.exists() and (not path.is_dir() or any(path.iterdir())):
         raise ValueError(f"Output must be new or empty: {path}")
     path.mkdir(parents=True, exist_ok=True)
     return path
-
-
-def verify_reference():
-    """Check the saved paper records against their SHA-256 digests."""
-    manifest = read_json(REFERENCE / "manifest.json")
-    for name, record in manifest["files"].items():
-        if sha256(REFERENCE / name) != record["sha256"]:
-            raise ValueError(f"Reference file has changed: {name}")
-    return manifest
 
 
 def provenance():
@@ -66,16 +56,13 @@ def provenance():
     }
 
 
-def load_results(path, reference_name):
-    """Load saved paper data or a completed run from this simulator."""
+def load_results(path):
+    """Load a completed run produced by the current simulator."""
     path = Path(path)
-    manifest = verify_reference()
     data = read_json(path)
-    original = sha256(path) == manifest["files"][reference_name]["sha256"]
-    if not original:
-        if data.get("complete") is not True:
-            raise ValueError("A fresh run must be complete before generating paper outputs")
-        recorded = data.get("provenance", {}).get("source_sha256", {})
-        if recorded.get("simulation.py") != sha256(ROOT / "qkd_reuse/simulation.py"):
-            raise ValueError("Result source hash does not match this simulator")
+    if not isinstance(data, dict) or data.get("complete") is not True:
+        raise ValueError("A run must be complete before generating analysis outputs")
+    source_hashes = data.get("provenance", {}).get("source_sha256", {})
+    if source_hashes.get("simulation.py") != sha256(ROOT / "qkd_reuse/simulation.py"):
+        raise ValueError("Result source hash does not match this simulator")
     return data

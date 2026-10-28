@@ -1,14 +1,14 @@
-"""The manuscript's fixed experiment grid and prespecified seed check."""
+"""Fixed experiment grid and independent seed check."""
 from __future__ import annotations
 
 import csv
 import time
 
 from . import simulation
-from .data import REFERENCE, new_output, provenance, read_json, verify_reference, write_json
+from .data import new_output, provenance, write_json
 from .statistics import summarize, validate_record
 
-# This order assigns seeds 20261001 + index to the paper's configurations.
+# This order assigns seeds 20261001 + index to the grid configurations.
 GRID_CONFIGS = [
     (length, strength, noise, "coherent", 1)
     for length in (2, 5, 8, 12)
@@ -25,6 +25,19 @@ SUMMARY_FIELDS = [
 ]
 
 
+def seed_plan():
+    """Return a fresh copy of the fixed 20-seed study settings."""
+    return {
+        "config": {
+            "length": 8, "strength": 0.5, "noise": 0.0,
+            "reset_mode": "coherent", "max_reset_attempts": 1,
+            "attempts": 100000, "test_fraction": 0.0,
+            "link_success": 1.0, "delta": 0.2,
+        },
+        "seeds": list(range(2026101001, 2026101021)),
+    }
+
+
 def write_csv(path, rows, fields):
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
@@ -33,10 +46,11 @@ def write_csv(path, rows, fields):
 
 
 def run_grid(output, attempts=100000):
-    """Run all 27 paper settings in order, using their recorded seeds.
+    """Run all 27 grid configurations in order, using their fixed seeds.
 
-    A smaller attempt count is useful for a smoke run but does not reproduce
-    the paper. Random draws depend on the batch size; do not split a run.
+    A smaller attempt count is useful for a smoke run; generated tables
+    require 100,000 attempts per configuration. Random draws depend on
+    the batch size; do not split a run.
     Completed rows are saved after each configuration, even if a later run fails.
     """
     if type(attempts) is not int or attempts < 1:
@@ -45,7 +59,6 @@ def run_grid(output, attempts=100000):
     metadata = provenance()
     data = {
         "schema": 1, "complete": False,
-        "interpretation": "Physical readout/reset analysis; no certified secret key",
         "source_sha256": metadata["source_sha256"]["simulation.py"],
         "provenance": metadata, "independent_attempts_per_configuration": attempts,
         "results": [],
@@ -67,9 +80,8 @@ def run_grid(output, attempts=100000):
 
 
 def run_seed_check(output):
-    """Run all 20 planned seeds once, without changing the reference records."""
-    verify_reference()
-    plan = read_json(REFERENCE / "seed-plan.json")
+    """Run all 20 planned seeds once and retain every result."""
+    plan = seed_plan()
     output = new_output(output)
     data = {
         "schema_version": 1, "complete": False, "plan": plan,

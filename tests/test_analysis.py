@@ -1,18 +1,96 @@
-"""Check retry formulas against independently constructed physical circuits.
-
-The gate/projection fixtures in test_parameterized_family do not import the
-simulator or analytical companion. We add physical reset-ancilla circuits,
-retain all success-index sectors, and propagate unnormalized error-weighted
-states so that later acceptance conditions earlier errors correctly.
-"""
+"""Check retry formulas against independently constructed physical circuits."""
 import unittest
 
 import numpy as np
 
 from qkd_reuse.analysis import amplitude_updated_predictions, fixed_filter_predictions
-from test_parameterized_family import (
-    BELL, I, X, amplitudes, bsm, cnot, conjugate, depolarize, dm, readout,
-)
+
+
+I = np.eye(2, dtype=complex)
+X = np.array([[0, 1], [1, 0]], dtype=complex)
+Z = np.diag([1, -1]).astype(complex)
+H = np.array([[1, 1], [1, -1]], dtype=complex) / np.sqrt(2)
+BELL = np.array([1, 0, 0, 1], dtype=complex) / np.sqrt(2)
+
+
+def dm(vector):
+    return np.outer(vector, vector.conj())
+
+
+def conjugate(rho, operator):
+    return operator @ rho @ operator.conj().T
+
+
+def gate(operator, target, qubits):
+    result = np.array([[1]], dtype=complex)
+    for position in range(qubits):
+        result = np.kron(result, operator if position == target else I)
+    return result
+
+
+def cnot(control, target, qubits):
+    result = np.zeros((2**qubits, 2**qubits), dtype=complex)
+    for column in range(2**qubits):
+        row = column
+        if (column >> (qubits - 1 - control)) & 1:
+            row ^= 1 << (qubits - 1 - target)
+        result[row, column] = 1
+    return result
+
+
+def amplitudes(bit, delta):
+    return np.sqrt([(1 + (-1)**bit * delta)/2,
+                    (1 - (-1)**bit * delta)/2])
+
+
+def bsm(rho, bit, delta, final=False):
+    """Explicit S,A1,A2,B (or final S,A,B) gates and projections."""
+    if final:
+        qubits = 3
+        joint = np.kron(dm(amplitudes(bit, delta)), rho)
+    else:
+        qubits = 4
+        # Physical repetition encoding |a,b> -> |a,a,b>.
+        repetition = np.zeros((8, 4), dtype=complex)
+        for alice in (0, 1):
+            for bob in (0, 1):
+                repetition[6*alice + bob, 2*alice + bob] = 1
+        expanded = repetition @ rho @ repetition.conj().T
+        joint = np.kron(dm(amplitudes(bit, delta)), expanded)
+    joint = conjugate(joint, gate(H, 0, qubits) @ cnot(0, 1, qubits))
+    kept_dimension = 2**(qubits - 2)
+    branches = []
+    for s in (0, 1):
+        for t in (0, 1):
+            indices = [kept_dimension*(2*s + t) + index
+                       for index in range(kept_dimension)]
+            branch = joint[np.ix_(indices, indices)]
+            correction = np.eye(kept_dimension, dtype=complex)
+            if t:
+                correction = (X if final else np.kron(X, X)) @ correction
+            if s:
+                correction = (Z if final else np.kron(Z, I)) @ correction
+            branches.append(conjugate(branch, correction))
+    return branches
+
+
+def depolarize(rho, noise):
+    if rho.shape == (2, 2):
+        replacement = np.trace(rho)*I/2
+    else:
+        alice = np.einsum('abcb->ac', rho.reshape(2, 2, 2, 2))
+        replacement = np.kron(alice, I/2)
+    return (1-noise)*rho + noise*replacement
+
+
+def readout(rho, strength):
+    branches = []
+    for y in (0, 1):
+        kraus = np.diag(np.sqrt([(1 + (-1)**y*strength)/2,
+                                 (1 - (-1)**y*strength)/2]))
+        branches.append(conjugate(rho, kraus if rho.shape == (2, 2)
+                                  else np.kron(I, kraus)))
+    return branches
 
 
 def trace(state):

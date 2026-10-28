@@ -1,13 +1,13 @@
-"""Sample the paper's GHZ-reuse model using physical quantum instruments.
+"""Sample the GHZ-reuse model using physical quantum instruments.
 
 Alice's remaining GHZ register is a logical qubit, so its joint state with
 Bob is a 4 x 4 density matrix. The final Bell-state measurement (BSM) leaves
 only Bob's 2 x 2 state. Array axes are ``(block, row, column)`` throughout.
 
-The encoding contrast is fixed at delta = 0.2, as in the manuscript's Monte
-Carlo study. Bob's decisions use sampled readout outcomes; reset decisions
-use sampled heralds. Density matrices and fidelities are diagnostic state,
-not information available to either party. Depolarization acts on Bob once
+The encoding contrast is fixed at delta = 0.2. Bob's decisions use sampled
+readout outcomes; reset decisions use sampled heralds. Density matrices
+and fidelities are diagnostic state, not information available to either
+party. Depolarization acts on Bob once
 per round. Retries reuse the same filter on the actual post-failure state.
 The amplitude-updated retry comparison is an exact calculation, not part of
 this sampler. No experiment here certifies a secret-key rate.
@@ -247,7 +247,7 @@ def experiment(
     if reset_mode not in ("coherent", "mixed"):
         raise ValueError("reset_mode must be 'coherent' or 'mixed'")
 
-    # Draw order and batch ordering are part of the published seed recipe.
+    # Draw order and batch ordering determine reproducibility for a given seed.
     rng = np.random.default_rng(seed)
     keys = rng.integers(0, 2, (attempts, length))
     errors = np.full((attempts, length), -1, dtype=np.int8)
